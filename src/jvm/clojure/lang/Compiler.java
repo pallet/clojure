@@ -239,7 +239,6 @@ static final public Var INSTANCE = Var.intern(Namespace.findOrCreate(Symbol.inte
 static final public Var ADD_ANNOTATIONS = Var.intern(Namespace.findOrCreate(Symbol.intern("clojure.core")),
                                             Symbol.intern("add-annotations"));
 
-
 //Integer
 static final public Var LINE = Var.create(0).setDynamic();
 
@@ -5426,8 +5425,8 @@ public static class LocalBinding{
 	public final int idx;
 	public final String name;
 	public final boolean isArg;
-    public final PathNode clearPathRoot;
-	public boolean canBeCleared = true;
+	public final PathNode clearPathRoot;
+	public boolean canBeCleared = (Boolean)((PersistentHashMap)RT.COMPILER_OPTIONS.deref()).valAt(RT.localsClearing);
 	public boolean recurMistmatch = false;
 
     public LocalBinding(int num, Symbol sym, Symbol tag, Expr init, boolean isArg,PathNode clearPathRoot)

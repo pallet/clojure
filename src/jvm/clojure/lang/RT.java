@@ -213,6 +213,9 @@ final static Var PRINT_DUP = Var.intern(CLOJURE_NS, Symbol.intern("*print-dup*")
 final static Var WARN_ON_REFLECTION = Var.intern(CLOJURE_NS, Symbol.intern("*warn-on-reflection*"), F).setDynamic();
 final static Var ALLOW_UNRESOLVED_VARS = Var.intern(CLOJURE_NS, Symbol.intern("*allow-unresolved-vars*"), F).setDynamic();
 
+final static Keyword localsClearing =  Keyword.intern("locals-clearing");
+final static Var COMPILER_OPTIONS = Var.intern(CLOJURE_NS, Symbol.intern("*compiler-options*"), PersistentHashMap.create(localsClearing, true)).setDynamic();
+
 final static Var IN_NS_VAR = Var.intern(CLOJURE_NS, Symbol.intern("in-ns"), F);
 final static Var NS_VAR = Var.intern(CLOJURE_NS, Symbol.intern("ns"), F);
 final static Var FN_LOADER_VAR = Var.intern(CLOJURE_NS, Symbol.intern("*fn-loader*"), null).setDynamic();

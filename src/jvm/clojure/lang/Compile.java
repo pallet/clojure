@@ -25,10 +25,12 @@ public class Compile{
 private static final String PATH_PROP = "clojure.compile.path";
 private static final String REFLECTION_WARNING_PROP = "clojure.compile.warn-on-reflection";
 private static final String UNCHECKED_MATH_PROP = "clojure.compile.unchecked-math";
+private static final String LOCALS_CLEARING_PROP = "clojure.compile.locals-clearing";
 private static final Var compile_path = RT.var("clojure.core", "*compile-path*");
 private static final Var compile = RT.var("clojure.core", "compile");
 private static final Var warn_on_reflection = RT.var("clojure.core", "*warn-on-reflection*");
 private static final Var unchecked_math = RT.var("clojure.core", "*unchecked-math*");
+private static final Var compiler_options = RT.var("clojure.core", "*compiler-options*");
 
 public static void main(String[] args) throws IOException{
 
@@ -47,10 +49,15 @@ public static void main(String[] args) throws IOException{
 
     boolean warnOnReflection = System.getProperty(REFLECTION_WARNING_PROP, "false").equals("true");
     boolean uncheckedMath = System.getProperty(UNCHECKED_MATH_PROP, "false").equals("true");
+    boolean localsClearing = System.getProperty(LOCALS_CLEARING_PROP, "true").equals("true");
 
 	try
 		{
-               Var.pushThreadBindings(RT.map(compile_path, path, warn_on_reflection, warnOnReflection, unchecked_math, uncheckedMath));
+               Var.pushThreadBindings(RT.map(compile_path, path,
+                                             warn_on_reflection, warnOnReflection,
+                                             unchecked_math, uncheckedMath,
+                                             compiler_options,
+                                             ((PersistentHashMap)compiler_options.deref()).assoc(RT.localsClearing, localsClearing)));
 
 		for(String lib : args)
         {
