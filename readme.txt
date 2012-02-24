@@ -1,3 +1,8 @@
+Note: This is a modification of the official clojure distribution. The official
+readme continue below. This is distribution is aimed at easing the development
+process in clojure.
+
+
  *   Clojure
  *   Copyright (c) Rich Hickey. All rights reserved.
  *   The use and distribution terms for this software are covered by the
