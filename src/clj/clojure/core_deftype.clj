@@ -17,7 +17,16 @@
   (.replace (str ns) \- \_))
 
 ;for now, built on gen-interface
-(defmacro definterface 
+(defmacro definterface
+  "Generates an interface with the given name and method signatures.
+  Every signature in sigs has the form
+
+   (^ReturnType methodName [^ParamType p1, ...]
+     \"Docstring\")
+
+  where all type hints are optional defaulting to Object.  The docstring is
+  optional, too."
+  {:added "1.2"}
   [name & sigs]
   (let [tag (fn [x] (or (:tag (meta x)) Object))
         psig (fn [[name [& args]]]
