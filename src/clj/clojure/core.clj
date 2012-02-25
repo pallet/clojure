@@ -3768,6 +3768,9 @@
           rename (or (:rename fs) {})
           exclude (set (:exclude fs))
           to-do (or (:only fs) (keys nspublics))]
+      (when-not (instance? clojure.lang.IPersistentCollection to-do)
+        (throw (new Exception
+                    ":only passed invalid value. Value should be a sequence of symbols")))
       (doseq [sym to-do]
         (when-not (exclude sym)
           (let [v (nspublics sym)]
