@@ -1571,7 +1571,10 @@
   Options are key-value pairs and may be one of:
     :default    the default dispatch value, defaults to :default
     :hierarchy  the isa? hierarchy to use for dispatching
-                defaults to the global hierarchy"
+                defaults to the global hierarchy
+                the hierarchy must be provided in a reference type
+                eg. you stored the hierarchy n a Var, then provide
+                the Var directly by virtue of #'"
   {:arglists '([name docstring? attr-map? dispatch-fn & options])
    :added "1.0"}
   [mm-name & options]
